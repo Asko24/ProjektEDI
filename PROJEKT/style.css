@@ -1,0 +1,100 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+    background-image: url("/kosmos8.jpg");
+    background-repeat: no-repeat;
+    background-size: 1920px auto;
+    background-attachment: fixed ;
+}
+
+h1{
+    text-align: center;
+    font-size: 20px;
+    width: 80%;
+    margin-left: 10%;
+    color: white;
+    text-shadow: 3px 3px 5px black; 
+}
+
+.dynamic_chart{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+div canvas{
+    background-color:rgba(255, 255, 255, 0.945);
+    border-left: 40px;
+    border-right: 40px;
+    box-shadow: 2px 2px 5px black;
+}
+
+h2{
+    text-align: center;
+    font-size: 3vw;
+    color: white;
+    text-shadow: 3px 3px 5px black; 
+}
+
+p{
+    text-align: center;
+    font-size: 2vw;
+    color: white;
+    text-shadow: 3px 3px 5px black; 
+}
+
+/* navigation */
+
+.nav {
+    overflow: hidden;
+    background-color: #fff;
+  }
+  
+  .nav a {
+    float: left;
+    color: #000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .nav a:hover {
+    background-color: #2badc2;
+    color: white;
+  }
+  
+  .nav a.active {
+    background-color: #2badc2;
+    color: white;
+  }
+  .container{
+      margin-top: 45px;
+  }
+
+/* media query */
+
+@media only screen and (min-width: 1024px) {
+
+    h1 {
+         font-size: 26px;
+        }
+    h2 {
+         font-size: 20px;
+        }
+        p {
+        font-size: 16px;
+        }
+    .dynamic_chart{
+        width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+    .container{
+        margin-top: 45px;
+    }
+    .map_container{
+        width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+}

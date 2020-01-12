@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <link rel = "stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=\, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+      integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+      integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+      crossorigin=""
+    ></script>
+
+    <!-- FONT STYLE -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    
+    <style>
+      #Mapa {
+        height: 700px;
+      }
+    </style>
+
+    <title>ISS</title>
+
+  </head>
+
+<body>
+    <div class="nav">
+      <a href="/index.html">ISS</a>
+      <a href="/drugie_api.html">DRUGA STRONA</a>
+      <a class="active" href="/mapa.html">MAPA</a>
+    </div>
+
+    <script>
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(0, 99, 132)',
+            borderColor: 'rgb(0, 99, 132)',
+            data: [0, 10, 5, 2, 20, 30, 45, 66]
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+
+    function updateChart(){
+      chart.data.datasets[0].data = [10, 20, 35, 22, 50, 70, 45, 66] ;
+
+      chart.update();
+    };
+
+    </script>
+
+    <h2>Gdzie w tym momencie jest Międzynarodowa Stacja Kosmiczna?</h2>
+
+    <p>
+      Szerokość geograficzna: <span id="szer"></span> °<br />
+
+      Długość geograficzna: <span id="dlug"></span> °<br />
+
+      Wysokość: <span id="wys"></span> km
+    </p>
+    <div class="map_container">
+      <div id="Mapa"></div>
+
+    <script>
+      // Using openstreetmap as a tile for Leaflet.js (L.)
+        // Starting point of the marker before loading data from json
+      const mymap = L.map('Mapa').setView([0, 0], 10);
+      const openstreetMap =
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+      const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+      const tiles = L.tileLayer(tileUrl, { openstreetMap });
+      tiles.addTo(mymap);
+
+      // Changing marker to custom one
+
+      const MSK_Ikona = L.icon({
+        iconUrl: 'stacja_wskaznik.png',
+        iconSize: [40, 40],
+        iconAnchor: [20, 20]
+      });
+      const marker = L.marker([0, 0], { icon: MSK_Ikona }).addTo(mymap);
+
+      // Fetch API
+      const api_url = 'https://api.wheretheiss.at/v1/satellites/25544';
+      let firstTime = true;
+
+      // Getting data from json
+
+      async function getData() {
+        const response = await fetch(api_url);
+        const data = await response.json();
+        const { latitude, longitude, altitude } = data;
+
+      // Synchronizing marker position with json data
+
+        marker.setLatLng([latitude, longitude]);
+        if (firstTime) {
+          mymap.setView([latitude, longitude], 2);
+          firstTime = false;
+        }
+      
+      // Rounding to two decimal places using toFixed function
+        document.getElementById('szer').textContent = latitude.toFixed(2);
+        document.getElementById('dlug').textContent = longitude.toFixed(2);
+        document.getElementById('wys').textContent = altitude.toFixed(2);
+      }
+      getData();
+      // Making autorefresh page every second (1000ms), to achieve moving marker
+      setInterval(getData, 1000);
+    </script>
+    </div>
+  </body>
+</html>
