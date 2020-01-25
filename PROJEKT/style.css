@@ -1,6 +1,6 @@
 body{
     font-family: 'Montserrat', sans-serif;
-    background-image: url("/kosmos8.jpg");
+    background-image: url("kosmos8.jpg");
     background-repeat: no-repeat;
     background-size: 1920px auto;
     background-attachment: fixed ;
@@ -20,6 +20,8 @@ h1{
     margin-left: 10%;
     margin-right: 10%;
 }
+
+
 
 div canvas{
     background-color:rgba(255, 255, 255, 0.945);
@@ -96,5 +98,16 @@ p{
         width: 70%;
         margin-left: 15%;
         margin-right: 15%;
+    }
+}
+
+/* ekrany wieksze niz fullhd */
+
+@media only screen and (min-width: 1920px) {
+    body{ 
+        background-image: url("kosmos8.jpg");
+        background-repeat: no-repeat;
+        background-size: 2560px auto;
+        background-attachment: fixed ;
     }
 }

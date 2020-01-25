@@ -31,7 +31,7 @@
                 labels: [],
                 datasets:
                     [{
-                        label: "The current altitude of ISS in km's (refreshing every 2 seconds)",
+                        label: "Obecna wysokość ISS w kilometrach (odświeżana co 2 sekundy)",
                         fill: false,
                         backgroundColor: '#000',
                         borderColor: '#2badc2',
@@ -44,16 +44,18 @@
         });
 
 
-    var altitudeCount = '0';
+    var altitudeCount = '1';
     function updateChart() {
+        if (document.getElementById('alt').textContent>300.0){
         // Adds a label per updateChart()
         chart.data.labels.push("#" + altitudeCount)
         // Setting the value to current altitude from json file
         chart.data.datasets[0].data = chart.data.datasets[0].data.concat(document.getElementById('alt').textContent);
-
+    
         chart.update();
         altitudeCount++;
+        }
     };
 
-    // Chart autoupdate
+    // Chart autoupdate every 2 seconds
     setInterval(updateChart, 2000);

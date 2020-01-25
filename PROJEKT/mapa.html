@@ -33,9 +33,9 @@
 
 <body>
     <div class="nav">
-      <a href="/index.html">ISS</a>
-      <a href="/drugie_api.html">DRUGA STRONA</a>
-      <a class="active" href="/mapa.html">MAPA</a>
+      <a href="index.html">ISS</a>
+      <a href="asteroidy.html">ASTEROIDY</a>
+      <a class="active" href="mapa.html">MAPA</a>
     </div>
 
     <script>
@@ -67,7 +67,7 @@
 
     </script>
 
-    <h2>Gdzie w tym momencie jest Międzynarodowa Stacja Kosmiczna?</h2>
+    <h2>Gdzie w tym momencie znajduje się Międzynarodowa Stacja Kosmiczna?</h2>
 
     <p>
       Szerokość geograficzna: <span id="szer"></span> °<br />
@@ -113,7 +113,7 @@
 
         marker.setLatLng([latitude, longitude]);
         if (firstTime) {
-          mymap.setView([latitude, longitude], 2);
+          mymap.setView([latitude, longitude], 3);
           firstTime = false;
         }
       

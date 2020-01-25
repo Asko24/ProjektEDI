@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=\, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- LINK TO CHART.JS LIBRARY -->
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js> </script> <title>ISS</title>
+
+    <!-- SITE STYLE -->
+    <link rel = "stylesheet" href="style.css">
+
+    <!-- FONT STYLE -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="nav">
+        <a href="index.html">ISS</a>
+        <a class="active" href="asteroidy.html">ASTEROIDY</a>
+        <a href="mapa.html">MAPA</a>
+    </div>
+
+        <h1>Liczba asteroid, które przelecą w ciągu danego dnia obok Ziemi</h1>
+        <div class="dynamic_chart">
+          <canvas id="myChart"></canvas>
+        </div>
+    
+        
+        <script>
+          const req = new XMLHttpRequest();
+    
+          var date = new Date();
+    
+          data_chart = [];
+          labels_chart = [];
+    
+          for (i = 0; i <= 31; i++) {
+            date.setDate(date.getDate() + 1);
+            var date_str = date.toISOString().slice(0, 10);
+            var url = 'https://api.nasa.gov/neo/rest/v1/feed?start_date=';
+            url += date_str;
+            url += '&end_date=';
+            url += date_str;
+            url += '&api_key=9n2JT0MUuua7jomDxe5CuSjknJdoL5yop1g0oJvi';
+    
+            req.open('GET', url, false);
+            req.send();
+            var response = JSON.parse(req.responseText);
+    
+            data_chart.push(response['element_count']);
+            labels_chart.push(date_str);
+          }
+          var ctx = document.getElementById('myChart');
+          var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels:labels_chart,
+              datasets: [{
+                label: 'Liczba asteroid',
+                data: data_chart,
+                backgroundColor:'#2badc2',
+                borderColor: '#2badc2',
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    beginAtZero: true
+                  }
+                }]
+              }
+            }
+          });
+        </script>
+</body>
+</html>
