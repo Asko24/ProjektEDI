@@ -2,7 +2,7 @@ Projekt wykonany w ramach przedmiotu Elektroniczna Wymiana Danych.
 
 Autorzy projektu: Piotr Gałecki, Krzysztof Górski
 
-Prowadzący laboratorium: dr Janusz Stal
+Prowadzący przedmiot: dr Janusz Stal
 
 Link do strony internetowej na serwerze v-ie: http://v-ie.uek.krakow.pl/~s215676/PROJEKT/
 
