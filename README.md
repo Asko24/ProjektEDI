@@ -19,4 +19,4 @@ Strona podzielona jest na trzy części:
 2. Strona wyświetlająca wykres statyczny ilości asteroid, które w czasie następnego miesiąca przelecą blisko Ziemi, na które Międzynarodowa Stacja Kosmiczna powinna uważać.
 3. Strona wyświetlająca aktualne położenie Międzynarodowej Stacji Kosmicznej na mapie świata. Mapa pobrana jest z googlestreetview a znacznik na niej umiejscowiony jest za pomocą biblioteki Leaflet.
 
-Między każdą z podstron, można się przemieszczać za pomocą przycisków nawigacyjnych znajdujących się na górze strony.
+Między każdą z podstron można się przemieszczać za pomocą przycisków nawigacyjnych znajdujących się na górze strony.
